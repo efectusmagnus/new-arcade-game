@@ -9,6 +9,6 @@ canvas {
 /* For tablets and desktop */
 @media (min-width: 768px) {
   canvas {
-    width: 75%;
+    width: 505px;
   }
 }
