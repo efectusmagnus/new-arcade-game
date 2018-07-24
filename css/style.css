@@ -5,3 +5,10 @@ body {
 canvas {
   width: 95%;
 }
+/*`Media Queries`*/
+/* For tablets and desktop */
+@media (min-width: 768px) {
+  canvas {
+    width: 75%;
+  }
+}
