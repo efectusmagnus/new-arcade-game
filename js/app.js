@@ -1,8 +1,6 @@
 var player; //NEW
 var allEnemies; //NEW
 var startGame = function(image) {
-
-}
 // Enemies our player must avoid
 var Enemy = function(position,speed) { //NEW
     // Variables applied to each of our instances go here,
@@ -53,3 +51,5 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+};
