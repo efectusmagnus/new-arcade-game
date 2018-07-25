@@ -1,5 +1,6 @@
 var player; //NEW
 var allEnemies; //NEW
+let score = 0;
 var startGame = function(image) {
 // Enemies our player must avoid
 var Enemy = function(position,speed) { //NEW
