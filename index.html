@@ -3,24 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1"><!-- adjust content to all devices and begin with scale 1 -->
+    <!-- adjust content to all devices and begin with scale 1 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet"><!--Google Fonts-->
 </head>
 <body>
-  <h1>Arcade Game</h1>
-  <h3 id="score" style="display: none;">Score:<span id="score-number">0</span></h3>  
-  <div>
+  <main role="main">
+    <div id="my-circle">
+      <h1>Arcade Game</h1>
+      <!-- begin of images of players-->
+      <div id="pickup-player">
+        <h2>Choose your character:</h2>
+        <img class="details" src="images/char-boy.png" onclick="startGame('images/char-boy.png')"/>
+        <img class="details" src="images/char-cat-girl.png" onclick="startGame('images/char-cat-girl.png')"/>
+        <img class="details" src="images/char-horn-girl.png" onclick="startGame('images/char-horn-girl.png')"/>
+        <img class="details" src="images/char-pink-girl.png" onclick="startGame('images/char-pink-girl.png')"/>
+        <img class="details" src="images/char-princess-girl.png" onclick="startGame('images/char-princess-girl.png')"/>
+        <!--onmouseover="popupInfo()" onclick="popupInfo()"-->
+        <!-- button that displays the instructions of the game -->
+        <button role="contentinfo" class="popup" onclick="popupInfo()">How to play
+          <span class="popuptext" id="myPopup">
+            <p class="pop-title">To win the game, you can collect gems and/or reach the water.</p>
+            <p class="pop-title">You have 3 lives. Each time you collide with the bug, you loose 1 life.</p>
+            <p class="pop-title">If you have a total score of 20 points, you win!</p></span>
+        </button>
+      </div>
+      <!-- End of images of players -->
+    </div>
+    <!-- Begin of reset button -->
+    <div id="restart-btn1" onclick="location.reload()" style="display: none;">
+      <button id="restart-game">
+        <img id="refresh-page-btn"src="images/restart-icon.png"/>
+      </button>
+    </div>
+    <!-- End of reset button -->
+
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
-  </div>
-  <div id="choose-player">
-    <h2>Choose your character :)</h2>
-    <img src="images/char-boy.png" onclick="startGame('images/char-boy.png')"/>
-    <img src="images/char-cat-girl.png" onclick="startGame('images/char-cat-girl.png')"/>
-    <img src="images/char-horn-girl.png" onclick="startGame('images/char-horn-girl.png')"/>
-    <img src="images/char-pink-girl.png" onclick="startGame('images/char-pink-girl.png')"/>
-    <img src="images/char-princess-girl.png" onclick="startGame('images/char-princess-girl.png')"/>
-  </div>
+    <!-- Begin of canvas-->
+    <div id="canvas-container"></div>
+    <!-- End of canvas -->
+    <!-- begin of buttons' panel-->
+    <div id="btn-panel" class="mobile-show" style="display: none;">
+      <button id="up" class="ctrl-btn">UP</button>
+      <br><!-- This br is to put UP in the top and simulate the visual keyboard-->
+      <button id="left" class="ctrl-btn">LEFT</button>
+      <button id="down"class="ctrl-btn">DOWN</button>
+      <button id="right" class="ctrl-btn">RIGHT</button>
+    </div>
+    <!-- End of buttons' panel-->
+
+  </main>
 </body>
 </html>
+
