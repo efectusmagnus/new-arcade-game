@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><!-- character encoding -->
     <title>Effective JavaScript: Frogger</title>
     <!-- adjust content to all devices and begin with scale 1 -->
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -20,9 +20,9 @@
         <img class="details" src="images/char-horn-girl.png" onclick="startGame('images/char-horn-girl.png')"/>
         <img class="details" src="images/char-pink-girl.png" onclick="startGame('images/char-pink-girl.png')"/>
         <img class="details" src="images/char-princess-girl.png" onclick="startGame('images/char-princess-girl.png')"/>
-        <!--onmouseover="popupInfo()" onclick="popupInfo()"-->
+          
         <!-- button that displays the instructions of the game -->
-        <button role="contentinfo" class="popup" onclick="popupInfo()">How to play
+        <button class="popup" onclick="popupInfo()">How to play
           <span class="popuptext" id="myPopup">
             <p class="pop-title">To win the game, you can collect gems and/or reach the water.</p>
             <p class="pop-title">You have 3 lives. Each time you collide with the bug, you loose 1 life.</p>
@@ -47,11 +47,11 @@
     <!-- End of canvas -->
     <!-- begin of buttons' panel-->
     <div id="btn-panel" class="mobile-show" style="display: none;">
-      <button id="up" class="ctrl-btn">UP</button>
+      <button id="up" class="ctrl-btn no-zoom">UP</button>
       <br><!-- This br is to put UP in the top and simulate the visual keyboard-->
-      <button id="left" class="ctrl-btn">LEFT</button>
-      <button id="down"class="ctrl-btn">DOWN</button>
-      <button id="right" class="ctrl-btn">RIGHT</button>
+      <button id="left" class="ctrl-btn no-zoom">LEFT</button>
+      <button id="down"class="ctrl-btn no-zoom">DOWN</button>
+      <button id="right" class="ctrl-btn no-zoom">RIGHT</button>
     </div>
     <!-- End of buttons' panel-->
 
