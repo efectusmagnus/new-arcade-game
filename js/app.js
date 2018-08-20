@@ -2,7 +2,7 @@ let allEnemies;
 let player;
 let allWater;
 let allGems;
-let score = 0;
+let allGemScores;
 
 const enemySpeed = [2, 2.1, 3, 3.5, 4, 4.5/*, 5, 5.5, 6, 6.5, 7*/];
 const gemSprites = ['images/gem-blue.png', 'images/gem-orange.png', 'images/gem-green.png'];
@@ -22,10 +22,6 @@ const startGame = function(sprite) {
       this.y = y; //Described below: 55, 140, 224
       this.width = 100;
       this.height = 180;
-      //this.y = bugSizeY + tileHeight * position; /* 60: corresponds to the
-      //relationship between the position of the street in the y axis and the bug.
-      //83: to the proximity of bugs to each other in the y axis. And the positions
-      //go from 0 to 2, coresponding to the three tiles (boxes)*/
       //Random speed
       this.speed = enemySpeed[Math.floor(Math.random() * enemySpeed.length)];
   };
@@ -38,6 +34,7 @@ const startGame = function(sprite) {
         this.x += bugSizeX * this.speed * dt; // 85 for bugSizeY
       } else { //Make the bug reappear on the left side again
         this.x = -tileWidth; // Negative, to make the illusion of coming from the left
+        this.speed = enemySpeed[Math.floor(Math.random() * enemySpeed.length)];
       }
       'use strict';
       const spaceBox = 60;/*In a scale from 0 to 100, 0: the bug goes through
@@ -72,14 +69,11 @@ const startGame = function(sprite) {
     this.height = 170;
     this.dx = 0;
     this.dy = 0;
-    //this.collision = false;
     this.waterScore = 0;
     this.gemScore = 0;
     this.totalScore = this.waterScore + this.gemScore;
     this.life = 3;
     this.playing = true;
-    //this.won = false;
-    //this.lost = false;
   };
   //Update the players position
   Player.prototype.update = function(dt) {
@@ -91,7 +85,7 @@ const startGame = function(sprite) {
     'use strict'
     const box = 20;//60
     //If the player doesn't touch the bug
-    if (player.y < box) { // and reaches the river,
+    if (this.y < box) { // and reaches the river,
       this.waterScore += 1; // give the player a point (augment the water score)
       this.reset(); //resets the player (returns the player to startpoint)
     }
@@ -100,6 +94,10 @@ const startGame = function(sprite) {
   //Render the player on the screen
   Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y, this.width, this.height);
+    /*This is for ipad devices. For the reset bottom appeared behind the canvas*/
+    if( /iPad/i.test(navigator.userAgent)) { /*These values look good on iPads, not DevTools*/
+      ctx.drawImage(Resources.get('images/restart-icon.png'), 413, -14, 78, 65);
+    }
     //if the players wins
     if ((this.gemScore === 20) || (this.waterScore === 20) || (this.gemScore + this.waterScore === 20)) {
       this.reset();/*this refers to player :)*/
@@ -155,7 +153,7 @@ const startGame = function(sprite) {
   };
 
   //variables for the hearts
-  let Heart = function(x) {
+  const Heart = function(x) {
     this.sprite = 'images/heart.png';
     this.x = x;
     this.y = 6;
@@ -172,7 +170,7 @@ const startGame = function(sprite) {
     }
   };
 
-  let Water = function(x, waterScore) {
+  const Water = function(x, waterScore) {
     this.sprite = 'images/drop.png';
     this.x = x;
     this.y = 5;
@@ -194,7 +192,7 @@ const startGame = function(sprite) {
   }
 
   // Varia for gem score
-  let GemScore = function(x) {
+  const GemScore = function(x) {
     this.sprite = 'images/gem-point.png';
     this.x = x;
     this.y = 8;
@@ -208,14 +206,15 @@ const startGame = function(sprite) {
     //Renders gem score with white color and 2em
     ctx.font = '2em sans-serif';
     ctx.fillStyle = 'white';
+    //if the player is playing, show the gem score
     if (player.playing) {
-      ctx.fillText(`${player.gemScore}`,305, 30);////if the player is playing, show the gem score
+      ctx.fillText(`${player.gemScore}`,305, 30);
     }
     ctx.textBaseline = 'middle';
   };
 
   //variables for gems
-  let Gem = function(gem) {
+  const Gem = function(gem) {
     this.sprite = gemSprites[Math.floor(Math.random() * gemSprites.length)];
     this.x = gemPosX[Math.floor(Math.random() * gemPosX.length)];
     this.y = gemPosY[Math.floor(Math.random() * gemPosY.length)];
@@ -245,12 +244,6 @@ const startGame = function(sprite) {
   Gem.prototype.render = function(player) {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y, this.width, this.height);
   }
-  /*
-  var randomSpeed = function random(array) {
-    return array[Math.floor(Math.random() * array.length)];
-  }
-  */
-
   // Now instantiate your objects.
   allGemScores = [new GemScore(260)];
   allGems = [new Gem()];
@@ -258,7 +251,7 @@ const startGame = function(sprite) {
   allHearts = [new Heart()];
   // Place all enemy objects in an array called allEnemies
   allEnemies = [new Enemy(55), new Enemy(140), new Enemy(224)]; /*The parameters define
-  the positions of the bugs in the Y axis. 55, 140, 224*/
+  /*the positions of the bugs in the Y axis. 55, 140, 224*/
   // Place the player object in a variable called player
   const createPlayer = function(sprite) {
     player = new Player(sprite);
