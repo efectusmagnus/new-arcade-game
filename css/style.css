@@ -1,14 +1,318 @@
-body {
-    text-align: center;
+html {
+  /*Source of background image: https://freedesignfile.com/195803-red-brick-wall-backgrounds-vectors-02/*/
+  background-image: url('../images/brick-wall.png');
+  min-height: 320px;
+  background-repeat: repeat;
+  padding-bottom: 0.5em;
 }
+
+*:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  text-align: center;
+  padding-bottom: 0.5em;
+}
+
+main {
+  max-width: 405px;
+  /*display: flex;*/
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+img.details {
+  background: linear-gradient(0deg, #FFEB3B, #4CAF50);
+  border-color: azure;
+  border-radius: 80px;
+  margin-top: 3em;
+  width: 6em;
+  margin-left: 0.1em;
+}
+
+img.details:hover {
+  background: linear-gradient(0deg, #673AB7, #4CAF50);
+}
+
+button.popup {
+  font-family: 'Press Start 2P', cursive;
+  background: linear-gradient(0deg, #FFEB3B, #4CAF50);
+  border-radius: 50px;
+  margin: 6em 0.2em 0 0;/* top, right, bottom, left*/
+  padding: 2em 1em;
+  width: 7em;
+  position: sticky;
+  float: right;
+  display: inline-block;
+  border-color: black;
+}
+
+button.popup:hover {
+  background: linear-gradient(0deg, #673AB7, #4CAF50);
+}
+/*Focus around the popup*/
+button.popup:focus {
+  outline: none !important;
+  border-color: #719ECE;
+  box-shadow: 0 0 10px #719ECE
+}
+
+/*Popup. Adapted from: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_popup */
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 260px;
+    height: auto;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 100%;
+    margin-left: -300px;
+    padding:1em;
+    font-size: 0.9em;
+    text-align: justify;
+    line-height: 1.5em;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    word-wrap: break-word;
+    column-gap: 1.3em;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+   content: "";
+   position: absolute;
+   top: 100%;
+   left: 50%;
+   margin-left: 8em;/*-50px, 34px*/
+   border-width: 5px;
+   border-style: solid;
+   border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+   visibility: visible;
+   -webkit-animation: fadeIn 1s;
+   animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+/*End of popup*/
 
 canvas {
   width: 95%;
 }
+
+section#score-panel {
+  max-width: 600px;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+h1, h2 {
+  font-family: 'Press Start 2P', cursive;
+  background: linear-gradient(0deg, #FFEB3B, #4CAF50);
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1em;
+  margin-top: 1.5em;
+}
+
+/*beginn of restart button*/
+div#restart-btn1 {
+  position: sticky;
+  max-height: 20px;
+  max-width: 505px;
+  float: right;
+  padding-right: 0.25em;
+}
+
+button#restart-game {
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 50px;
+  padding-top: 0.6em;
+  cursor: pointer;
+
+}
+button#restart-game:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+img#refresh-page-btn {
+  width: 3.5em;
+}
+/*End of restart button*/
+
+div#my-circle {
+  background-color: black;
+  border-radius: 1000px;
+  padding-bottom: 0.5em;
+  border-top-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+/*Control buttons*/
+div#btn-panel {
+  overflow: visible;
+  margin: auto;
+  align-items: flex-start;
+  text-transform: none;
+  box-sizing: inherit;
+  text-rendering: auto;
+}
+
+button.ctrl-btn {
+  height: 3.7em;
+  width: 6.6em;
+}
+
+/*class to not zoom when doulble-clicking*/
+button.no-zoom {
+  touch-action: manipulation;
+}
+
+/*Beginn of hover colors for control buttons*/
+button#up:hover {
+  background: linear-gradient(0deg, #673AB7, #4CAF50);
+}
+button#left:hover {
+  background: linear-gradient(-90deg, #673AB7, #4CAF50);
+}
+button#right:hover {
+  background: linear-gradient(90deg, #673AB7, #4CAF50);
+}
+button#down:hover {
+  background: linear-gradient(0deg, #4CAF50, #673AB7);
+}
+/*End of hover colors for control buttons*/
+
+button#up, button#left, button#right, button#down {
+  border-style: groove;
+}
+button#up {
+  margin-bottom: 0.5em;
+  margin-left: 0.4em;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  background: linear-gradient(0deg, #646b65, #ffffff);
+}
+
+button#left{
+  margin-right: 0.5em;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 1px;
+  background: linear-gradient(-90deg, #6d776a, #fdfeff);
+}
+
+button#right {
+  border-top-left-radius: 1px;
+  border-bottom-left-radius: 1px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background: linear-gradient(-90deg, #fdfeff, #657162);
+
+}
+button#down {
+  margin-right: 0.5em;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #51524a, #fffefe);
+}
+
+/*End of control buttons*/
+
 /*`Media Queries`*/
-/* For tablets and desktop */
-@media (min-width: 768px) {
-  canvas {
-    width: 505px;
+@media (min-width: 321px) {
+  img#refresh-page-btn {
+    width: 4.1em;
   }
 }
+@media (min-width: 411px) {
+  img#refresh-page-btn {
+    width: 59px;
+  }
+  div#restart-btn1 {
+    padding-right: 0.4em;
+  }
+}
+@media (min-width: 768px) {
+  html {
+    margin: 6em 0;
+  }
+  div#restart-btn1 {
+    padding-right: 0.35em;
+  }
+  img#refresh-page-btn {
+    width: 61px;
+  }
+  /* intruction and control buttons */
+  button.ctrl-btn {
+    width: 9em;
+    height: 4.5em;
+  }
+  img.details {
+    margin-left: 1.8em;
+  }
+  button.popup {
+    margin-right: 1em;
+    margin-left: 1.1em;
+  }
+}
+
