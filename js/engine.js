@@ -3,6 +3,7 @@ var startEngine = function() {
    * This file provides the game loop functionality (update entities and render),
    * draws the initial game board on the screen, and then calls the update and
    * render methods on your player and enemy objects (defined in your app.js).
+   *
    * This engine makes the canvas' context (ctx) object globally available to make
    * writing app.js a little simpler to work with.
    */
@@ -12,8 +13,6 @@ var startEngine = function() {
        * create the canvas element, grab the 2D context for that canvas
        * set the canvas elements height/width and add it to the DOM.
        */
-      //document.getElementById('canvas-container').innerHTML = '';
-      //document.getElementById('canvas-container').appendChild('canvas');
       var doc = global.document,
           win = global.window,
           /*I create a container for the canvas, so that it stays before the
@@ -25,7 +24,6 @@ var startEngine = function() {
 
       canvas.width = 505;
       canvas.height = 606;
-      //doc.body.appendChild(canvas); //old
       canContainer.appendChild(canvas); //And appended the canvas to the container
 
       /* This function serves as the kickoff point for the game loop itself
@@ -93,15 +91,10 @@ var startEngine = function() {
           allEnemies.forEach(function(enemy) {
               enemy.update(dt);
           });
-          /*allWater.forEach(function(water) {//NEW
-              water.update(dt);
-          });*/
           allGems.forEach(function(gem) {
               gem.update(dt);
           });
           player.update();
-          //waterScore.update(); //NEW
-          //gem.update(); //NEW
       }
 
       /* This function initially draws the "game level", it will then call
@@ -177,15 +170,8 @@ var startEngine = function() {
           allGems.forEach(function(gem) {
               gem.render();
           });
-/*
-          PanelBtn.forEach(function(resetBtn) {
-              resetBtn.render();
-          });
-*/
 
           player.render();
-          //waterScore.render();
-          //gem.render(); //NEW
       }
 
       /* This function does nothing but it could have been a good place to
@@ -233,4 +219,3 @@ var startEngine = function() {
       global.ctx = ctx;
   })(this);
 };
-
