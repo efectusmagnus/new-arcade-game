@@ -294,7 +294,7 @@ button#down {
 }
 @media (min-width: 768px) {
   html {
-    margin: 6em 0;
+    margin: 5em 0;
   }
   div#restart-btn1 {
     padding-right: 0.35em;
